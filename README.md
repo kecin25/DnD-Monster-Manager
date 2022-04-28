@@ -19,11 +19,11 @@ Save - You can save a list of monsters and their stats to be used for later
 
 Submit - Once you have clicked on the monster(s) you wish to either deal damage to or see if they pass a saving throw and then deal damage,
          enter a command in the format of:
-         	(3 letter aberiavation for saving throw type) (score to beat for saving throw) dmg (damage on a failed save)
-         	ex: str 10 dmg 15
+         	(3 letter aberiavation for saving throw type) (score to beat for saving throw) dmg (damage on a failed save).
+         	ex: str 10 dmg 15.
          or in the format of:
-         	dmg (amount of damage the monster takes)
-         	ex: dmg 15
+         	dmg (amount of damage the monster takes).
+         	ex: dmg 15.
          Once you click submit, the program will roll for the selected monsters if needed and deal damage to them. If the monster's health reaches zero, then the
 	 program will leave a message in the Action Log that the monster died and remove that monster from the list on the left.
 									
