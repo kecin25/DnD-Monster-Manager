@@ -6,12 +6,25 @@ Purpose: Storage of Monster stats for Monster class
 
 mon_dic = {
 
-    'AARAKOCRA': {
+    'AARAKORCA': {
 
-        'Armor Class': 12,
-        'Speed': 20,  # some monsters can fly, swim, ...
+        'Size': 'Medium',
+        'Type': 'Humanoid',
+        'Align.': 'NG',
 
-        'Hit Points': 13,  # needs to be by chance*
+        'AC': 12,
+        'hp': 13,  # lower limit
+        'HP': 24,  # upper limit ?influenced by size?
+
+        'Speed': 20,  # some monsters can fly, swim, ..
+        'Sav. Throws': 'WIS',
+        'Skills': None,
+        'WRI': 'Fireweak, nonmagicalres, necroticimmu, poisonimmu, charmedimmu, exhaustionimmu, frightenedimmu, paralyzedimmu, poisonedimmu',
+        'Senses': 'Darkvision 60',
+        'Languages': None,
+        'CR': 6.00,
+        'Additional': 'Charge',
+        'Font': 'Tales from the Yawning Portal',
 
         'STR': 10,
         'DEX': 14,
@@ -24,17 +37,30 @@ mon_dic = {
 
     'ABOLETH': {
 
-        'Armor Class': 17,
-        'Speed': 10,  # some monsters can fly, swim, ...
+        'Size': 'Medium',
+        'Type': 'Humanoid',
+        'Align.': 'NG',
 
-        'Hit Points': 135,  # needs to be by chance*
+        'AC': 12,
+        'hp': 13,  # lower limit
+        'HP': 24,  # upper limit ?influenced by size?
 
-        'STR': 21,
-        'DEX': 9,
-        'CON': 15,
-        'INT': 18,
-        'WIS': 15,
-        'CHA': 18,
+        'Speed': 20,  # some monsters can fly, swim, ..
+        'Sav. Throws': 'WIS',
+        'Skills': None,
+        'WRI': 'Fireweak, nonmagicalres, necroticimmu, poisonimmu, charmedimmu, exhaustionimmu, frightenedimmu, paralyzedimmu, poisonedimmu',
+        'Senses': 'Darkvision 60',
+        'Languages': None,
+        'CR': 6.00,
+        'Additional': 'Charge',
+        'Font': 'Tales from the Yawning Portal',
 
-    }
+        'STR': 10,
+        'DEX': 14,
+        'CON': 10,
+        'INT': 11,
+        'WIS': 12,
+        'CHA': 11,
+
+    },
 }

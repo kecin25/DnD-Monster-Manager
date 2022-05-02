@@ -229,18 +229,18 @@ def make_edit_monster_window(name, ac, speed, max_hp, hp, str, dex, con, int, wi
 # is used when changing any stat or when adding/removing stats that the user wants to see
 def update_monster_menu():
     # longest_x is used to find the longest character length of all possible strings in the monster_class_list
-    longest_0 = 0
-    longest_1 = 0
-    longest_2 = 0
-    longest_3 = 0
-    longest_4 = 0
-    longest_5 = 0
-    longest_6 = 0
-    longest_7 = 0
-    longest_8 = 0
-    longest_9 = 0
-    longest_10 = 0
-    longest_11 = 0
+    longest_0 = 0 # True Name
+    longest_1 = 0 # Name
+    longest_2 = 0 # HP
+    longest_3 = 0 # HP/Max HP
+    longest_4 = 0 # Max HP
+    longest_5 = 0 # AC
+    longest_6 = 0 # Ground Speed
+    longest_7 = 0 # STR
+    longest_8 = 0 # Dex
+    longest_9 = 0 # Con
+    longest_10 = 0 # Int
+    longest_11 = 0 # Wis
     temp_names = []
 
     # To keep all for loops running each time, they will only run when their checkbox has been selected
@@ -288,7 +288,7 @@ def update_monster_menu():
 
     if selected_checkboxes[6]:
         for x in monster_class_list:
-            temp_names.append(str(x.get_speed()))
+            temp_names.append(str(x.get_ground_speed()))
         if len(monster_class_list) != 0:
             longest_6 = len(max(temp_names, key=len)) + 5
         temp_names.clear()
@@ -343,7 +343,7 @@ def update_monster_menu():
                 monster_display_list[num] += " "
         if selected_checkboxes[2]:
             monster_display_list[num] += "HP: " + str(monster_class_list[num].get_hp())
-            for i in range(len(monster_class_list[num].get_hp()), longest_2):
+            for i in range(len(str(monster_class_list[num].get_hp())), longest_2):
                 monster_display_list[num] += " "
         if selected_checkboxes[3]:
             monster_display_list[num] += "HP/Max HP: " + str(monster_class_list[num].get_hp()) + "/" + str(
@@ -360,8 +360,8 @@ def update_monster_menu():
             for i in range(len(str(monster_class_list[num].get_ac())), longest_5):
                 monster_display_list[num] += " "
         if selected_checkboxes[6]:
-            monster_display_list[num] += "Speed: " + str(monster_class_list[num].get_speed())
-            for i in range(len(str(monster_class_list[num].get_speed())), longest_6):
+            monster_display_list[num] += "Speed: " + str(monster_class_list[num].get_ground_speed())
+            for i in range(len(str(monster_class_list[num].get_ground_speed())), longest_6):
                 monster_display_list[num] += " "
         if selected_checkboxes[7]:
             monster_display_list[num] += "Str: " + str(monster_class_list[num].get_str())
@@ -386,6 +386,8 @@ def update_monster_menu():
         if selected_checkboxes[12]:
             monster_display_list[num] += "Cha: " + str(monster_class_list[num].get_cha())
     default_window["-MONSTERS-"].update(monster_display_list)
+
+# TODO add different damage types as well as a search function for adding monsters
 
 
 default_window = gui.Window("Monster stat Tracker", layout_default, resizable=True, grab_anywhere=True)
@@ -413,7 +415,7 @@ while True:
             if adding_event == "-TYPE-":
                 mn = mon(adding_values["-TYPE-"], adding_values["-NAME-"])
                 monster_maker_window["-AC-"].update(mn.get_ac())
-                monster_maker_window["-SPEED-"].update(mn.get_speed())
+                monster_maker_window["-SPEED-"].update(mn.get_ground_speed())
                 monster_maker_window["-MAX_HP-"].update(mn.get_max_hp())
                 monster_maker_window["-HP-"].update(mn.get_hp())
                 monster_maker_window["-STR-"].update(mn.get_str())
@@ -434,7 +436,7 @@ while True:
                     for x in range(1, int(adding_values["-AMOUNT-"]) + 1):
                         mn = mon(adding_values["-TYPE-"], str(adding_values["-NAME-"] + " " + str(x)))
                         mn.set_ac(adding_values["-AC-"])
-                        mn.set_speed(adding_values["-SPEED-"])
+                        mn.set_ground_speed(adding_values["-SPEED-"])
                         mn.set_max_hp(adding_values["-MAX_HP-"])
                         if adding_values["-HP-"] == "":
                             mn.set_hp(adding_values["-MAX_HP-"])
@@ -460,7 +462,7 @@ while True:
                 if monster_display_list[x] == monster_name:
                     monster_maker_window = make_edit_monster_window(monster_class_list[x].get_name(),
                                                                     monster_class_list[x].get_ac(),
-                                                                    monster_class_list[x].get_speed(),
+                                                                    monster_class_list[x].get_ground_speed(),
                                                                     monster_class_list[x].get_max_hp(),
                                                                     monster_class_list[x].get_hp(),
                                                                     monster_class_list[x].get_str(),
@@ -536,7 +538,7 @@ while True:
                             error_line += 1
                             numeric_boolean = contents[0].isnumeric()
                             if numeric_boolean:
-                                mn.set_speed(contents[0])
+                                mn.set_ground_speed(contents[0])
                                 contents.pop(0)
                                 error_line += 1
                                 numeric_boolean = contents[0].isnumeric()
@@ -591,7 +593,7 @@ while True:
                 data_to_save.append(monster_class_list[x].get_hp())
                 data_to_save.append(monster_class_list[x].get_max_hp())
                 data_to_save.append(monster_class_list[x].get_ac())
-                data_to_save.append(monster_class_list[x].get_speed())
+                data_to_save.append(monster_class_list[x].get_ground_speed())
                 data_to_save.append(monster_class_list[x].get_str())
                 data_to_save.append(monster_class_list[x].get_dex())
                 data_to_save.append(monster_class_list[x].get_con())
