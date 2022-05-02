@@ -1,6 +1,6 @@
 # DND stat Tracker
 # Made by: Kevin Boudreaux and Carlos Salinas
-# main.py last edited by Kevin Boudreaux on 4/27/2022
+# main.py last edited by Kevin Boudreaux on 5/1/2022
 
 import random
 
