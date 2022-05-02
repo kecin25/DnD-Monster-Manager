@@ -52,6 +52,9 @@ log_column = [
 
 # TODO add a third panel that displays the most recent selected monster's actions that it can take. Either
 #  through text or picture
+
+# TODO: add check boxes for Air speed, Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, WRI(?),
+# Senses, Languages, CR, Additional, Book Source
 monster_list = \
     [
         [
@@ -99,9 +102,10 @@ Log = []
 selected_checkboxes = [False, True, False, True, False, True, False, False, False, False, False, False, False]
 
 
-# Window used when adding monsters to the manager
-# It has its own function because PySimpleGUI does not allow a window to be open and closed
-# The workaround is making a new copy of the layout every time the function is called
+# Window used when adding monsters to the manager It has its own function because PySimpleGUI does not allow a window
+# to be open and closed The workaround is making a new copy of the layout every time the function is called
+# TODO: find a way to have it be where as you type in the type of monster have it filter to show only the monsters that
+#  match what is typed
 def make_add_monster_window():
     monster_maker = \
         [
@@ -170,6 +174,8 @@ def make_add_monster_window():
     return gui.Window("Add Monster", layout_add_monster)
 
 
+# TODO: add boxes for Air speed, Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, WRI(?),
+#  Senses, Languages, CR, Additional, Book Source
 def make_edit_monster_window(name, ac, speed, max_hp, hp, str, dex, con, int, wis, cha):
     monster_editor = \
         [
@@ -227,20 +233,22 @@ def make_edit_monster_window(name, ac, speed, max_hp, hp, str, dex, con, int, wi
 
 # update_monster_menu is a function that goes through the display list and updates the stats being shown,
 # is used when changing any stat or when adding/removing stats that the user wants to see
+# TODO: add checks for Air speed, Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, WRI(?),
+#  Senses, Languages, CR, Additional, Book Source
 def update_monster_menu():
     # longest_x is used to find the longest character length of all possible strings in the monster_class_list
-    longest_0 = 0 # True Name
-    longest_1 = 0 # Name
-    longest_2 = 0 # HP
-    longest_3 = 0 # HP/Max HP
-    longest_4 = 0 # Max HP
-    longest_5 = 0 # AC
-    longest_6 = 0 # Ground Speed
-    longest_7 = 0 # STR
-    longest_8 = 0 # Dex
-    longest_9 = 0 # Con
-    longest_10 = 0 # Int
-    longest_11 = 0 # Wis
+    longest_0 = 0  # True Name
+    longest_1 = 0  # Name
+    longest_2 = 0  # HP
+    longest_3 = 0  # HP/Max HP
+    longest_4 = 0  # Max HP
+    longest_5 = 0  # AC
+    longest_6 = 0  # Ground Speed
+    longest_7 = 0  # STR
+    longest_8 = 0  # Dex
+    longest_9 = 0  # Con
+    longest_10 = 0  # Int
+    longest_11 = 0  # Wis
     temp_names = []
 
     # To keep all for loops running each time, they will only run when their checkbox has been selected
@@ -387,6 +395,7 @@ def update_monster_menu():
             monster_display_list[num] += "Cha: " + str(monster_class_list[num].get_cha())
     default_window["-MONSTERS-"].update(monster_display_list)
 
+
 # TODO add different damage types as well as a search function for adding monsters
 
 
@@ -401,6 +410,8 @@ while True:
         break
 
     # Add is ran when the ADD button is clicked
+    # TODO: add boxes for Air speed, Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, WRI(?),
+    #  Senses, Languages, CR, Additional, Book Source
     if event == "-ADD-":
         # makes a secondary window to get all the information needed
         monster_maker_window = make_add_monster_window()
@@ -437,11 +448,13 @@ while True:
                         mn = mon(adding_values["-TYPE-"], str(adding_values["-NAME-"] + " " + str(x)))
                         mn.set_ac(adding_values["-AC-"])
                         mn.set_ground_speed(adding_values["-SPEED-"])
-                        mn.set_max_hp(adding_values["-MAX_HP-"])
-                        if adding_values["-HP-"] == "":
-                            mn.set_hp(adding_values["-MAX_HP-"])
-                        else:
-                            mn.set_hp(adding_values["-HP-"])
+                        if mn.get_max_hp() == 0:
+                            mn.set_max_hp(adding_values["-MAX_HP-"])
+                            if adding_values["-HP-"] == "":
+                                mn.set_hp(adding_values["-MAX_HP-"])
+                            else:
+
+                                mn.set_hp(adding_values["-HP-"])
                         mn.set_str(adding_values["-STR-"])
                         mn.set_dex(adding_values["-DEX-"])
                         mn.set_con(adding_values["-CON-"])
@@ -453,6 +466,8 @@ while True:
                     monster_maker_window.close()
 
     # Edit is used when wanting to change the stats of the selected monster(s)
+    # TODO: add boxes for Air speed, Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, WRI(?),
+    #  Senses, Languages, CR, Additional, Book Source
     if event == "-EDIT-":
         selected_monsters = values["-MONSTERS-"]
         # Nested for loop is used to edit each monster in the selected list, the user will be able to edit one monster
@@ -485,7 +500,8 @@ while True:
                             else:
                                 monster_class_list[x].set_name(editing_values["-NAME-"])
                                 monster_class_list[x].set_ac(editing_values["-AC-"])
-                                monster_class_list[x].set_speed(editing_values["-SPEED-"])
+                                monster_class_list[x].set_ground_speed(editing_values["-SPEED-"]  # [Ground]
+                                                                       )
                                 monster_class_list[x].set_max_hp(editing_values["-MAX_HP-"])
                                 if editing_values["-HP-"] == "":
                                     monster_class_list[x].set_hp(editing_values["-MAX_HP-"])
@@ -502,6 +518,8 @@ while True:
         update_monster_menu()
 
     # Load is used when the user wants to use a pre-made file
+    # TODO: add sections for Air speed, Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, WRI(?),
+    #  Senses, Languages, CR, Additional, Book Source
     if event == "-LOAD-":
         file_name = values["-LOAD_FILE_NAME-"]
         monster_display_list = []
@@ -583,6 +601,8 @@ while True:
         default_window["-LOG-"].update(Log)
 
     # Save saves all the current monsters and their stats to a txt file at the location the user gives
+    # TODO: add sections for Air speed, Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, WRI(?),
+    #  Senses, Languages, CR, Additional, Book Source
     if event == "-SAVE-":
         file_name = values["-SAVE_FILE_NAME-"]
         with open(file_name, "w") as file:
@@ -610,6 +630,8 @@ while True:
 
     # The events below are used to help the user select what they want to see, so they don't get overwhelmed with
     # information
+    # TODO: add check boxes for Air speed, Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, WRI(?),
+    # Senses, Languages, CR, Additional, Book Source
     if event == "-MONSTER TYPE-":
         selected_checkboxes[0] = not selected_checkboxes[0]
         update_monster_menu()
@@ -796,7 +818,9 @@ while True:
             if command[4:].isnumeric():
                 damage = int(command[4:])
                 # Nested for loops are used to find exactly what monster is needed to be updated
+                monsters_to_remove = []
                 for monster_name in selected_monsters:
+                    monster_killed = False
                     for x in range(0, len(monster_display_list)):
                         if monster_display_list[x] == monster_name:
                             monster_class_list[x].take_damage(damage)
@@ -804,12 +828,19 @@ while True:
                             if monster_class_list[x].get_hp() <= 0:
                                 Log.append(
                                     monster_class_list[x].get_name() + " dies taking " + str(damage) + " damage")
-                                monster_class_list.remove(monster_class_list[x])
-                                selected_monsters.remove(monster_display_list[x])
-                                monster_display_list.remove(monster_display_list[x])
+                                monster_killed = True
+
                             else:
                                 Log.append(monster_class_list[x].get_name() + " takes " + str(damage) + " damage")
+                        if monster_killed:
+                            monsters_to_remove.append(x)
                             break
+                count = 0
+                for x in monsters_to_remove:
+                    monster_class_list.remove(monster_class_list[x - count])
+                    selected_monsters.remove(monster_display_list[x - count])
+                    monster_display_list.remove(monster_display_list[x - count])
+                    count += 1
             else:
                 print("error " + command[4:] + " is not a number, input is incorrect")
 

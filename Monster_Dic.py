@@ -24,7 +24,7 @@ mon_dic = {
         'Languages': None,
         'CR': 6.00,
         'Additional': 'Charge',
-        'Font': 'Tales from the Yawning Portal',
+        'Book Source': 'Tales from the Yawning Portal',
 
         'STR': 10,
         'DEX': 14,
@@ -53,7 +53,7 @@ mon_dic = {
         'Languages': None,
         'CR': 6.00,
         'Additional': 'Charge',
-        'Font': 'Tales from the Yawning Portal',
+        'Book Source': 'Tales from the Yawning Portal',
 
         'STR': 10,
         'DEX': 14,

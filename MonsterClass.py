@@ -12,77 +12,74 @@ import random
 class Monster:
 
     def __init__(self, monster_name="", monster_nickname=""):
-            if monster_name == "" or monster_nickname == "":
-                self.monster_name = ""
-                self.monster_nickname = ""
+        if monster_name == "" or monster_nickname == "":
+            self.monster_name = monster_name
+            self.monster_nickname = monster_nickname
 
-                self.size = None
-                self.type = None
-                self.align = None
+            self.size = None
+            self.type = None
+            self.align = None
+            self.armor_class = 0
+            self.max_hit_points = 0
+            self.cur_hit_points = self.max_hit_points
 
-                self.armor_class = 0
+            self.ground_speed = 0
+            self.fly_speed = 0
+            self.swim_speed = 0
+            self.climb_speed = 0
+            self.sav_throws = None
+            self.skills = None
+            self.wri = None
+            self.senses = None
+            self.languages = None
+            self.cr = 0
+            self.additional = None
+            self.book_source = None
 
-                hp_min = 0
-                hp_max = 0
-                self.max_hit_points = 0
-                self.cur_hit_points = self.max_hit_points
+            self.str = 0
+            self.dex = 0
+            self.con = 0
+            self.int = 0
+            self.wis = 0
+            self.cha = 0
+        else:
+            if monster_name not in list(mon_dic.keys()):
+                print(f'ERROR\nMonster name: {monster_name} not found')
 
-                self.ground_speed = 0
-                self.fly_speed = 0
-                self.swim_speed = 0
-                self.climb_speed = 0
-                self.sav_throws = None
-                self.skills = None
-                self.wri = None
-                self.senses = None
-                self.languages = None
-                self.cr = 0
-                self.additional = None
-                self.book_source = None
+            self.monster_name = monster_name
+            self.monster_nickname = monster_nickname
 
-                self.str = 0
-                self.dex = 0
-                self.con = 0
-                self.int = 0
-                self.wis = 0
-                self.cha = 0
-            else:
-                if monster_name not in list(mon_dic.keys()):
-                    print(f'ERROR\nMonster name: {monster_name} not found')
+            self.size = mon_dic[monster_name]['Size']
+            self.type = mon_dic[monster_name]['Type']
+            self.align = mon_dic[monster_name]['Align.']
 
-                self.monster_name = monster_name
-                self.monster_nickname = monster_nickname
+            self.armor_class = mon_dic[monster_name]['AC']
 
-                self.size = mon_dic[monster_name]['Size']
-                self.type = mon_dic[monster_name]['Type']
-                self.align = mon_dic[monster_name]['Align.']
+            self.hp_min = mon_dic[monster_name]['hp']
+            self.hp_max = mon_dic[monster_name]['HP']
+            self.max_hit_points = random.randrange(self.hp_min, self.hp_max)
+            self.cur_hit_points = self.max_hit_points
 
-                self.armor_class = mon_dic[monster_name]['AC']
+            self.ground_speed = mon_dic[monster_name][
+                'Speed']  # ["Ground"] #TODO: wait for updated monster_dic to uncomment
+            #       self.fly_speed = mon_dic[monster_name]['Speed']["Fly"]
+            #      self.swim_speed = mon_dic[monster_name]['Speed']["Swim"]
+            #     self.climb_speed = mon_dic[monster_name]['Speed']["Climb"]
+            self.sav_throws = mon_dic[monster_name]['Sav. Throws']
+            self.skills = mon_dic[monster_name]['Skills']
+            self.wri = mon_dic[monster_name]['WRI']
+            self.senses = mon_dic[monster_name]['Senses']
+            self.languages = mon_dic[monster_name]['Languages']
+            self.cr = mon_dic[monster_name]['CR']
+            self.additional = mon_dic[monster_name]['Additional']
+            self.book_source = mon_dic[monster_name]['Book Source']
 
-                hp_min = mon_dic[monster_name]['hp']
-                hp_max = mon_dic[monster_name]['HP']
-                self.max_hit_points = random.randrange(hp_min, hp_max)
-                self.cur_hit_points = self.max_hit_points
-
-                self.ground_speed = mon_dic[monster_name]['Speed']#["Ground"] #TODO: wait for updated monster_dic to uncomment
-         #       self.fly_speed = mon_dic[monster_name]['Speed']["Fly"]
-          #      self.swim_speed = mon_dic[monster_name]['Speed']["Swim"]
-           #     self.climb_speed = mon_dic[monster_name]['Speed']["Climb"]
-                self.sav_throws = mon_dic[monster_name]['Sav. Throws']
-                self.skills = mon_dic[monster_name]['Skills']
-                self.wri = mon_dic[monster_name]['WRI']
-                self.senses = mon_dic[monster_name]['Senses']
-                self.languages = mon_dic[monster_name]['Languages']
-                self.cr = mon_dic[monster_name]['CR']
-                self.additional = mon_dic[monster_name]['Additional']
-                self.book_source = mon_dic[monster_name]['book_source']
-
-                self.str = mon_dic[monster_name]['STR']
-                self.dex = mon_dic[monster_name]['DEX']
-                self.con = mon_dic[monster_name]['CON']
-                self.int = mon_dic[monster_name]['INT']
-                self.wis = mon_dic[monster_name]['WIS']
-                self.cha = mon_dic[monster_name]['CHA']
+            self.str = mon_dic[monster_name]['STR']
+            self.dex = mon_dic[monster_name]['DEX']
+            self.con = mon_dic[monster_name]['CON']
+            self.int = mon_dic[monster_name]['INT']
+            self.wis = mon_dic[monster_name]['WIS']
+            self.cha = mon_dic[monster_name]['CHA']
 
     # Get Methods
     def get_true_name(self):
