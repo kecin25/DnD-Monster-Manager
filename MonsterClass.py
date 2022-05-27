@@ -29,7 +29,10 @@ class Monster:
             self.climb_speed = 0
             self.sav_throws = None
             self.skills = None
-            self.wri = None
+            self.damage_immunities = None
+            self.condition_immunities = None
+            self.resistances = None
+            self.weaknesses = None
             self.senses = None
             self.languages = None
             self.cr = 0
@@ -60,14 +63,21 @@ class Monster:
             self.max_hit_points = random.randrange(self.hp_min, self.hp_max)
             self.cur_hit_points = self.max_hit_points
 
-            self.ground_speed = mon_dic[monster_name][
-                'Speed']  # ["Ground"] #TODO: wait for updated monster_dic to uncomment
+            self.ground_speed = mon_dic[monster_name]['Speed']  # ["Ground"] #TODO: wait for updated monster_dic to uncomment
             #       self.fly_speed = mon_dic[monster_name]['Speed']["Fly"]
             #      self.swim_speed = mon_dic[monster_name]['Speed']["Swim"]
             #     self.climb_speed = mon_dic[monster_name]['Speed']["Climb"]
             self.sav_throws = mon_dic[monster_name]['Sav. Throws']
             self.skills = mon_dic[monster_name]['Skills']
-            self.wri = mon_dic[monster_name]['WRI']
+            # TODO: wait for updated monster_dic to uncomment
+            self.damage_immunities = None
+            self.condition_immunities = None
+            self.resistances = None
+            self.weaknesses = None
+           # self.damage_immunities = mon_dic[monster_name]['Damage Immunities']
+           # self.condition_immunities = mon_dic[monster_name]['Condition Immunities']
+           # self.resistances = mon_dic[monster_name]['Resistances']
+           # self.weaknesses = mon_dic[monster_name]['Weaknesses']
             self.senses = mon_dic[monster_name]['Senses']
             self.languages = mon_dic[monster_name]['Languages']
             self.cr = mon_dic[monster_name]['CR']
@@ -124,8 +134,17 @@ class Monster:
     def get_skills(self):
         return self.skills
 
-    def get_wri(self):
-        return self.wri
+    def get_damage_immunities(self):
+        return self.damage_immunities
+
+    def get_condition_immunities(self):
+        return self.condition_immunities
+
+    def get_resistances(self):
+        return self.resistances
+
+    def get_weaknesses(self):
+        return  self.weaknesses
 
     def get_senses(self):
         return self.senses
@@ -177,7 +196,7 @@ class Monster:
             print(f'ERROR: {new_size} is not a valid size')
 
         else:
-            self.monster_nickname = new_size
+            self.size = new_size
 
     def set_type(self, new_type):  # TODO: error proof
         self.type = new_type
@@ -239,8 +258,17 @@ class Monster:
     def set_skills(self, new_skills):  # TODO: error proof
         self.skills = new_skills
 
-    def set_wri(self, new_wri):  # TODO: error proof
-        self.wri = new_wri
+    def set_damage_immunities(self, new_immunities):  # TODO: error proof
+        self.damage_immunities = new_immunities
+
+    def set_condition_immunities(self, new_immunities): # TODO: error proof
+        self.condition_immunities = new_immunities
+
+    def set_resistances(self, new_resistances): # TODO: error proof
+        self.resistances = new_resistances
+
+    def set_weaknesses(self, new_weaknesses): # TODO: error proof
+        self.weaknesses = new_weaknesses
 
     def set_senses(self, new_senses):  # TODO: error proof
         self.senses = new_senses
