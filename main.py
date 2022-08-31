@@ -17,6 +17,8 @@ TEXT_SIZE = 20
 monster_class_list = []
 monster_display_list = []
 
+# TODO see if there is a System call to see how big screen is and base Width and Height off that.
+#   Consider making the checkboxes another screen if not, way to make sure everything is visible.
 
 # TODO add a third panel that displays the most recent selected monster's actions that it can take. Either
 #  through text or picture
@@ -25,87 +27,87 @@ monster_display_list = []
 # the List box of monsters that are in play Then there is an Input box and a button on the same row for the User to
 # use
 monster_list = [
-        [
-            gui.Text(text="Monsters", auto_size_text=True, justification="center", size=(int(WIDTH*1.5), 3)),
-        ],
-        [
-            gui.Checkbox(checkbox_color="black", text="Monster Type", key="-MONSTER TYPE-", enable_events=True,
-                         pad=((0, 8), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Monster Name", key="-MONSTER NAME-", enable_events=True,
-                         pad=((0, 8), (0, 0)),
-                         default=True),
-            gui.Checkbox(checkbox_color="black", text="HP", key="-HP-", enable_events=True, pad=((0, 48), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="HP/Max HP", key="-HP/MAX HP-", enable_events=True, default=True,
-                         pad=((0, 14), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Max HP", key="-MAX HP-", enable_events=True,
-                         pad=((0, 8), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Ground Speed", key="-SPEED-", enable_events=True,
-                         pad=((0, 8), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Swim Speed", key="-SWIM SPEED-", enable_events=True,
-                         pad=((0, 8), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Fly Speed", key="-FLY SPEED-", enable_events=True,
-                         pad=((0, 29), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Climb Speed", key="-CLIMB SPEED-", enable_events=True,
-                         pad=((0, 60), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Condition Immunities", key="-CON IMMU-", enable_events=True,
-                         pad=((0, 19), (0, 0))),
-        ],
-        [
-            gui.Checkbox(checkbox_color="black", text="Armor Class", key="-AC-", enable_events=True, default=True,
-                         pad=((0, 15), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="STR", key="-STR-", enable_events=True, pad=((0, 68), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="DEX", key="-DEX-", enable_events=True, pad=((0, 41), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="CON", key="-CON-", enable_events=True, pad=((0, 55), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="INT", key="-INT-", enable_events=True, pad=((0, 36), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="WIS", key="-WIS-", enable_events=True, pad=((0, 66), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="CHA", key="-CHA-", enable_events=True, pad=((0, 54), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Resistances", key="-RES-", enable_events=True,
-                         pad=((0, 16), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Damage Immunities", key="-DMG IMMU-", enable_events=True,
-                         pad=((0, 19), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Weaknesses", key="-WEAK-", enable_events=True,
-                         pad=((0, 24), (0, 0))),
+    [
+        gui.Text(text="Monsters", auto_size_text=True, justification="center", size=(int(WIDTH * 1.5), 3)),
+    ],
+    [
+        gui.Checkbox(checkbox_color="black", text="Monster Type", key="-MONSTER TYPE-", enable_events=True,
+                     pad=((0, 8), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Monster Name", key="-MONSTER NAME-", enable_events=True,
+                     pad=((0, 8), (0, 0)),
+                     default=True),
+        gui.Checkbox(checkbox_color="black", text="HP", key="-HP-", enable_events=True, pad=((0, 48), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="HP/Max HP", key="-HP/MAX HP-", enable_events=True, default=True,
+                     pad=((0, 14), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Max HP", key="-MAX HP-", enable_events=True,
+                     pad=((0, 8), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Ground Speed", key="-SPEED-", enable_events=True,
+                     pad=((0, 8), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Swim Speed", key="-SWIM SPEED-", enable_events=True,
+                     pad=((0, 8), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Fly Speed", key="-FLY SPEED-", enable_events=True,
+                     pad=((0, 29), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Climb Speed", key="-CLIMB SPEED-", enable_events=True,
+                     pad=((0, 60), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Condition Immunities", key="-CON IMMU-", enable_events=True,
+                     pad=((0, 19), (0, 0))),
+    ],
+    [
+        gui.Checkbox(checkbox_color="black", text="Armor Class", key="-AC-", enable_events=True, default=True,
+                     pad=((0, 15), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="STR", key="-STR-", enable_events=True, pad=((0, 68), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="DEX", key="-DEX-", enable_events=True, pad=((0, 41), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="CON", key="-CON-", enable_events=True, pad=((0, 55), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="INT", key="-INT-", enable_events=True, pad=((0, 36), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="WIS", key="-WIS-", enable_events=True, pad=((0, 66), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="CHA", key="-CHA-", enable_events=True, pad=((0, 54), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Resistances", key="-RES-", enable_events=True,
+                     pad=((0, 16), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Damage Immunities", key="-DMG IMMU-", enable_events=True,
+                     pad=((0, 19), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Weaknesses", key="-WEAK-", enable_events=True,
+                     pad=((0, 24), (0, 0))),
 
-        ],
-        [
+    ],
+    [
 
-            gui.Checkbox(checkbox_color="black", text="Size", key="-SIZE-", enable_events=True, pad=((0, 61), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Type", key="-TYPE-", enable_events=True, pad=((0, 65), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Alignment", key="-ALIGN-", enable_events=True,
-                         pad=((0, 8), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Saving Throws", key="-ST-", enable_events=True,
-                         pad=((0, 0), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Skills", key="-SKILLS-", enable_events=True,
-                         pad=((0, 23), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Senses", key="-SENSES-", enable_events=True,
-                         pad=((0, 47), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Languages", key="-LAN-", enable_events=True,
-                         pad=((0, 18), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="CR", key="-CR-", enable_events=True, pad=((0, 70), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Additional", key="-ADDI-", enable_events=True,
-                         pad=((0, 72), (0, 0))),
-            gui.Checkbox(checkbox_color="black", text="Book Source", key="-BS-", enable_events=True),
-        ],
-        [
-            gui.Listbox(values=monster_display_list, enable_events=True, size=(int(WIDTH*1.2), HEIGHT),
-                        select_mode='multiple', key="-MONSTERS-", font="Courier", horizontal_scroll=True,
-                        auto_size_text=True)
-        ],
-        [
-            gui.Checkbox(text="Saving Throw", enable_events=True, key="-SAVING THROW-", default=False),
-            gui.Combo(list(["STR", "DEX", "CON", "INT", "WIS", "CHA"]), default_value="Str", readonly=True,
-                      disabled=True, key="-SAVING THROW TYPE-"),
-            gui.In(disabled=True, size=(3, 0), key="-SAVING THROW AMOUNT-"),
-            gui.Text(text="Damage Type", pad=((30, 0), (0, 0))),
-            gui.Combo(list(
-                ["ACID", "BLUDGEONING", "COLD", "FIRE", "FORCE", "LIGHTNING", "NECROTIC", "PIERCING", "POISON",
-                 "PSYCHIC", "RADIANT", "SLASHING", "THUNDER"]), default_value="SLASHING", readonly=True,
-                key="-DAMAGE TYPE-"),
-            gui.Text(text="Damage Amount", pad=((30, 0), (0, 0))),
-            gui.In(size=(int((WIDTH - 20) / 4), 0), enable_events=True, key="-INPUT-"),
-            gui.Button(button_text="Submit", size=(20, 1), bind_return_key=True, key="-SUBMIT BUTTON-"),
-        ]
+        gui.Checkbox(checkbox_color="black", text="Size", key="-SIZE-", enable_events=True, pad=((0, 61), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Type", key="-TYPE-", enable_events=True, pad=((0, 65), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Alignment", key="-ALIGN-", enable_events=True,
+                     pad=((0, 8), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Saving Throws", key="-ST-", enable_events=True,
+                     pad=((0, 0), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Skills", key="-SKILLS-", enable_events=True,
+                     pad=((0, 23), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Senses", key="-SENSES-", enable_events=True,
+                     pad=((0, 47), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Languages", key="-LAN-", enable_events=True,
+                     pad=((0, 18), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="CR", key="-CR-", enable_events=True, pad=((0, 70), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Additional", key="-ADDI-", enable_events=True,
+                     pad=((0, 72), (0, 0))),
+        gui.Checkbox(checkbox_color="black", text="Book Source", key="-BS-", enable_events=True),
+    ],
+    [
+        gui.Listbox(values=monster_display_list, enable_events=True, size=(int(WIDTH * 1.2), HEIGHT),
+                    select_mode='multiple', key="-MONSTERS-", font="Courier", horizontal_scroll=True,
+                    auto_size_text=True)
+    ],
+    [
+        gui.Checkbox(text="Saving Throw", enable_events=True, key="-SAVING THROW-", default=False),
+        gui.Combo(list(["STR", "DEX", "CON", "INT", "WIS", "CHA"]), default_value="Str", readonly=True,
+                  disabled=True, key="-SAVING THROW TYPE-"),
+        gui.In(disabled=True, size=(3, 0), key="-SAVING THROW AMOUNT-"),
+        gui.Text(text="Damage Type", pad=((30, 0), (0, 0))),
+        gui.Combo(list(
+            ["ACID", "BLUDGEONING", "COLD", "FIRE", "FORCE", "LIGHTNING", "NECROTIC", "PIERCING", "POISON",
+             "PSYCHIC", "RADIANT", "SLASHING", "THUNDER"]), default_value="SLASHING", readonly=True,
+            key="-DAMAGE TYPE-"),
+        gui.Text(text="Damage Amount", pad=((30, 0), (0, 0))),
+        gui.In(size=(int((WIDTH - 20) / 4), 0), enable_events=True, key="-INPUT-"),
+        gui.Button(button_text="Submit", size=(20, 1), bind_return_key=True, key="-SUBMIT BUTTON-"),
     ]
+]
 
 # log_column is used to display what actions were recently taken by the user and stores buttons for Add Monster,
 # Save, and Load
@@ -114,7 +116,7 @@ log_column = [
         gui.Text(text="Action Log", auto_size_text=True, justification="center", size=(WIDTH, 3))
     ],
     [
-        gui.Listbox(values=[], size=(WIDTH, int(HEIGHT*1.5)), key="-LOG-", expand_x=True, expand_y=True,)
+        gui.Listbox(values=[], size=(WIDTH, int(HEIGHT * 1.5)), key="-LOG-", expand_x=True, expand_y=True, )
     ],
     [
         gui.Button(button_text="Add", size=(int(WIDTH / 2), 1), key="-ADD-"),
@@ -137,12 +139,12 @@ log_column = [
 ]
 
 layout_default = [
-        [
-            gui.Column(monster_list),
-            gui.VerticalSeparator(color="Black"),
-            gui.Column(log_column),
-        ]
+    [
+        gui.Column(monster_list),
+        gui.VerticalSeparator(color="Black"),
+        gui.Column(log_column),
     ]
+]
 
 Log = []
 selected_checkboxes = [False, True, False, True, False, False, False, False, False, False, True, False, False, False,
@@ -152,8 +154,8 @@ selected_checkboxes = [False, True, False, True, False, False, False, False, Fal
 
 # Window used when adding monsters to the manager It has its own function because PySimpleGUI does not allow a window
 # to be open and closed The workaround is making a new copy of the layout every time the function is called
-# TODO: add boxes for Air speed, Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, immunities,
-#     resistances, weaknesses, Senses, Languages, CR, Additional, Book Source
+# TODO: add boxes for Size, Type, Alignment, Saving throws, Skills, immunities, resistances,  weaknesses, Senses,
+#  Languages, CR, Additional, Book Source
 def make_add_monster_window():
     monster_maker = \
         [
@@ -178,8 +180,20 @@ def make_add_monster_window():
                 gui.In(enable_events=True, key="-AC-", size=BOX_SIZE)
             ],
             [
-                gui.Text(text="Speed", auto_size_text=True, justification="left", size=TEXT_SIZE),
+                gui.Text(text="Ground Speed", auto_size_text=True, justification="left", size=TEXT_SIZE),
                 gui.In(enable_events=True, key="-SPEED-", size=BOX_SIZE)
+            ],
+            [
+                gui.Text(text="Fly Speed", auto_size_text=True, justification="left", size=TEXT_SIZE),
+                gui.In(enable_events=True, key="-FLY SPEED-", size=BOX_SIZE)
+            ],
+            [
+                gui.Text(text="Swim Speed", auto_size_text=True, justification="left", size=TEXT_SIZE),
+                gui.In(enable_events=True, key="-SWIM SPEED-", size=BOX_SIZE)
+            ],
+            [
+                gui.Text(text="Climb Speed", auto_size_text=True, justification="left", size=TEXT_SIZE),
+                gui.In(enable_events=True, key="-CLIMB SPEED-", size=BOX_SIZE)
             ],
             [
                 gui.Text(text="Max HP", auto_size_text=True, justification="left", size=TEXT_SIZE),
@@ -223,9 +237,9 @@ def make_add_monster_window():
     return gui.Window("Add Monster", layout_add_monster)
 
 
-# TODO: add boxes for Air speed, Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, immunities,
-#     resistances, weaknesses, Senses, Languages, CR, Additional, Book Source
-def make_edit_monster_window(name, ac, speed, max_hp, hp, str, dex, con, int, wis, cha):
+# TODO: add boxes for Size, Type, Alignment, Saving throws, Skills, immunities, resistances,  weaknesses, Senses,
+#  Languages, CR, Additional, Book Source
+def make_edit_monster_window(name, ac, speed, fly_speed, swim_speed, climb_speed, max_hp, hp, str, dex, con, int, wis, cha):
     monster_editor = \
         [
             [
@@ -239,6 +253,18 @@ def make_edit_monster_window(name, ac, speed, max_hp, hp, str, dex, con, int, wi
             [
                 gui.Text(text="Speed", auto_size_text=True, justification="left", size=TEXT_SIZE),
                 gui.In(enable_events=True, key="-SPEED-", size=BOX_SIZE, default_text=speed)
+            ],
+            [
+                gui.Text(text="Fly Speed", auto_size_text=True, justification="left", size=TEXT_SIZE),
+                gui.In(enable_events=True, key="-FLY SPEED-", size=BOX_SIZE, default_text=fly_speed)
+            ],
+            [
+                gui.Text(text="Swim Speed", auto_size_text=True, justification="left", size=TEXT_SIZE),
+                gui.In(enable_events=True, key="-SWIM SPEED-", size=BOX_SIZE, default_text=swim_speed)
+            ],
+            [
+                gui.Text(text="Climb Speed", auto_size_text=True, justification="left", size=TEXT_SIZE),
+                gui.In(enable_events=True, key="-CLIMB SPEED-", size=BOX_SIZE, default_text=climb_speed)
             ],
             [
                 gui.Text(text="Max HP", auto_size_text=True, justification="left", size=TEXT_SIZE),
@@ -642,9 +668,8 @@ while True:
         break
 
     # Add is ran when the ADD button is clicked
-    # TODO: add boxes for Air speed, Swim Speed, Climb Speed, Size, Type,
-    #  Alignment, Saving throws, Skills, immunities, resistances, weaknesses, Senses, Languages, CR, Additional,
-    #  Book Source
+    # TODO: add boxes for Size, Type, Alignment, Saving throws, Skills, immunities, resistances,  weaknesses, Senses,
+    #  Languages, CR, Additional, Book Source
     if event == "-ADD-":
         # makes a secondary window to get all the information needed
         monster_maker_window = make_add_monster_window()
@@ -660,6 +685,9 @@ while True:
                 mn = mon(adding_values["-TYPE-"], adding_values["-NAME-"])
                 monster_maker_window["-AC-"].update(mn.get_ac())
                 monster_maker_window["-SPEED-"].update(mn.get_ground_speed())
+                monster_maker_window["-FLY SPEED-"].update(mn.get_fly_speed())
+                monster_maker_window["-SWIM SPEED-"].update(mn.get_swim_speed())
+                monster_maker_window["-CLIMB SPEED-"].update(mn.get_climb_speed())
                 monster_maker_window["-MAX_HP-"].update(mn.get_max_hp())
                 monster_maker_window["-HP-"].update(mn.get_hp())
                 monster_maker_window["-STR-"].update(mn.get_str())
@@ -682,6 +710,10 @@ while True:
                         mn = mon(adding_values["-TYPE-"], str(adding_values["-NAME-"] + " " + str(x)))
                         mn.set_ac(adding_values["-AC-"])
                         mn.set_ground_speed(adding_values["-SPEED-"])
+                        mn.set_fly_speed(adding_values["-FLY SPEED-"])
+                        mn.set_swim_speed(adding_values["-SWIM SPEED-"])
+                        mn.set_climb_speed(adding_values["-CLIMB SPEED-"])
+
                         if mn.get_max_hp() == 0:
                             mn.set_max_hp(adding_values["-MAX_HP-"])
                             if adding_values["-HP-"] == "":
@@ -700,9 +732,8 @@ while True:
                     monster_maker_window.close()
 
     # Edit is used when wanting to change the stats of the selected monster(s)
-    # TODO: add boxes for Air speed,
-    #  Swim Speed, Climb Speed, Size, Type, Alignment, Saving throws, Skills, immunities, resistances, weaknesses,
-    #  Senses, Languages, CR, Additional, Book Source
+    # TODO: add boxes for Size, Type, Alignment, Saving throws, Skills, immunities, resistances,  weaknesses, Senses,
+    #  Languages, CR, Additional, Book Source
     if event == "-EDIT-":
         selected_monsters = values["-MONSTERS-"]
         # Nested for loop is used to edit each monster in the selected list, the user will be able to edit one monster
@@ -713,6 +744,9 @@ while True:
                     monster_maker_window = make_edit_monster_window(monster_class_list[x].get_name(),
                                                                     monster_class_list[x].get_ac(),
                                                                     monster_class_list[x].get_ground_speed(),
+                                                                    monster_class_list[x].get_fly_speed(),
+                                                                    monster_class_list[x].get_swim_speed(),
+                                                                    monster_class_list[x].get_climb_speed(),
                                                                     monster_class_list[x].get_max_hp(),
                                                                     monster_class_list[x].get_hp(),
                                                                     monster_class_list[x].get_str(),
@@ -735,8 +769,10 @@ while True:
                             else:
                                 monster_class_list[x].set_name(editing_values["-NAME-"])
                                 monster_class_list[x].set_ac(editing_values["-AC-"])
-                                monster_class_list[x].set_ground_speed(editing_values["-SPEED-"]  # [Ground]
-                                                                       )
+                                monster_class_list[x].set_ground_speed(editing_values["-SPEED-"])
+                                monster_class_list[x].set_fly_speed(editing_values["-FLY SPEED-"])
+                                monster_class_list[x].set_swim_speed(editing_values["-SWIM SPEED-"])
+                                monster_class_list[x].set_climb_speed(editing_values["-CLIMB SPEED-"])
                                 monster_class_list[x].set_max_hp(editing_values["-MAX_HP-"])
                                 if editing_values["-HP-"] == "":
                                     monster_class_list[x].set_hp(editing_values["-MAX_HP-"])
@@ -1066,8 +1102,13 @@ while True:
         # selected_monsters are monsters that were selected from the -MONSTERS- list
         selected_monsters = values["-MONSTERS-"]
         # Printing the command with the selected monsters
-        if len(selected_monsters) != 0:
-            temp = command + " with "
+        if values["-SAVING THROW-"] and len(selected_monsters) != 0:
+            if command is None or command is "" or command is 0:
+                temp = values["-SAVING THROW TYPE-"] + " saving throw of " + values["-SAVING THROW AMOUNT-"]\
+                       + " and DMG amount 0 with"
+            else:
+                temp = values["-SAVING THROW TYPE-"] + " saving throw of " + values[
+                    "-SAVING THROW AMOUNT-"] + " and DMG amount" + command + " with"
         else:
             temp = command
         first_name = True
@@ -1137,12 +1178,11 @@ while True:
                                     if modifier >= Saving_Throw_Amount:
                                         passed = True
                                         damage = int(damage / 2)
-                                    # TODO check to see if works once implemented get_resistances, get_immunities, and get_weaknesses
-                                    if values["-DAMAGE TYPE-"] in monster_class_list[x].get_resistances():
+                                    if monster_class_list[x].get_resistances() is not None and values["-DAMAGE TYPE-"] in monster_class_list[x].get_resistances():
                                         monster_class_list[x].take_damage(int(damage / 2))
-                                    elif values["-DAMAGE TYPE-"] in monster_class_list[x].get_damage_immunities():
+                                    elif monster_class_list[x].get_damage_immunities() is not None and values["-DAMAGE TYPE-"] in monster_class_list[x].get_damage_immunities():
                                         pass
-                                    elif values["-DAMAGE TYPE-"] in monster_class_list[x].get_weaknesses():
+                                    elif monster_class_list[x].get_weaknesses() is not None and values["-DAMAGE TYPE-"] in monster_class_list[x].get_weaknesses():
                                         monster_class_list[x].take_damage(int(damage * 2))
                                     else:
                                         monster_class_list[x].take_damage(damage)
@@ -1195,12 +1235,11 @@ while True:
                 for monster_name in selected_monsters:
                     for x in range(0, len(monster_display_list)):
                         if monster_display_list[x] == monster_name:
-                            # TODO check to see if works once implemented get_resistances, get_immunities, and get_weaknesses
-                            if values["-DAMAGE TYPE-"] in monster_class_list[x].get_resistances():
+                            if monster_class_list[x].get_resistances() is not None and values["-DAMAGE TYPE-"] in monster_class_list[x].get_resistances():
                                 monster_class_list[x].take_damage(int(damage / 2))
-                            elif values["-DAMAGE TYPE-"] in monster_class_list[x].get_damage_immunities():
+                            elif monster_class_list[x].get_damage_immunities() is not None and values["-DAMAGE TYPE-"] in monster_class_list[x].get_damage_immunities():
                                 pass
-                            elif values["-DAMAGE TYPE-"] in monster_class_list[x].get_weaknesses():
+                            elif monster_class_list[x].get_weaknesses() is not None and values["-DAMAGE TYPE-"] in monster_class_list[x].get_weaknesses():
                                 monster_class_list[x].take_damage(int(damage * 2))
                             else:
                                 monster_class_list[x].take_damage(damage)

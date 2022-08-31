@@ -16,7 +16,7 @@ mon_dic = {
         'hp': 13,  # lower limit
         'HP': 24,  # upper limit ?influenced by size?
 
-        'Speed': 20,  # some monsters can fly, swim, ..
+        'Speed': {'Ground': 20, 'Fly': 20, 'Swim': 20, 'Climb': 20},
         'Sav. Throws': 'WIS',
         'Skills': None,
         'WRI': 'Fireweak, nonmagicalres, necroticimmu, poisonimmu, charmedimmu, exhaustionimmu, frightenedimmu, paralyzedimmu, poisonedimmu',
@@ -45,7 +45,7 @@ mon_dic = {
         'hp': 13,  # lower limit
         'HP': 24,  # upper limit ?influenced by size?
 
-        'Speed': 20,  # some monsters can fly, swim, ..
+        'Speed': {'Ground': 20, 'Fly': 20, 'Swim': 20, 'Climb': 20},
         'Sav. Throws': 'WIS',
         'Skills': None,
         'WRI': 'Fireweak, nonmagicalres, necroticimmu, poisonimmu, charmedimmu, exhaustionimmu, frightenedimmu, paralyzedimmu, poisonedimmu',

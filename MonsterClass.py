@@ -5,6 +5,7 @@ Purpose: Dnd monster stat tracker
 """
 
 from Monster_Dic import mon_dic
+
 import random
 
 
@@ -63,10 +64,10 @@ class Monster:
             self.max_hit_points = random.randrange(self.hp_min, self.hp_max)
             self.cur_hit_points = self.max_hit_points
 
-            self.ground_speed = mon_dic[monster_name]['Speed']  # ["Ground"] #TODO: wait for updated monster_dic to uncomment
-            #       self.fly_speed = mon_dic[monster_name]['Speed']["Fly"]
-            #      self.swim_speed = mon_dic[monster_name]['Speed']["Swim"]
-            #     self.climb_speed = mon_dic[monster_name]['Speed']["Climb"]
+            self.ground_speed = mon_dic[monster_name]['Speed']["Ground"]
+            self.fly_speed = mon_dic[monster_name]['Speed']["Fly"]
+            self.swim_speed = mon_dic[monster_name]['Speed']["Swim"]
+            self.climb_speed = mon_dic[monster_name]['Speed']["Climb"]
             self.sav_throws = mon_dic[monster_name]['Sav. Throws']
             self.skills = mon_dic[monster_name]['Skills']
             # TODO: wait for updated monster_dic to uncomment
@@ -74,10 +75,10 @@ class Monster:
             self.condition_immunities = None
             self.resistances = None
             self.weaknesses = None
-           # self.damage_immunities = mon_dic[monster_name]['Damage Immunities']
-           # self.condition_immunities = mon_dic[monster_name]['Condition Immunities']
-           # self.resistances = mon_dic[monster_name]['Resistances']
-           # self.weaknesses = mon_dic[monster_name]['Weaknesses']
+            # self.damage_immunities = mon_dic[monster_name]['Damage Immunities']
+            # self.condition_immunities = mon_dic[monster_name]['Condition Immunities']
+            # self.resistances = mon_dic[monster_name]['Resistances']
+            # self.weaknesses = mon_dic[monster_name]['Weaknesses']
             self.senses = mon_dic[monster_name]['Senses']
             self.languages = mon_dic[monster_name]['Languages']
             self.cr = mon_dic[monster_name]['CR']
@@ -120,13 +121,13 @@ class Monster:
         return self.ground_speed
 
     def get_fly_speed(self):
-        return self.ground_speed
+        return self.fly_speed
 
     def get_swim_speed(self):
-        return self.ground_speed
+        return self.swim_speed
 
     def get_climb_speed(self):
-        return self.ground_speed
+        return self.climb_speed
 
     def get_sav_throws(self):
         return self.sav_throws
@@ -141,10 +142,11 @@ class Monster:
         return self.condition_immunities
 
     def get_resistances(self):
-        return self.resistances
+       return self.resistances
 
     def get_weaknesses(self):
-        return  self.weaknesses
+        return self.weaknesses
+
 
     def get_senses(self):
         return self.senses
@@ -261,13 +263,13 @@ class Monster:
     def set_damage_immunities(self, new_immunities):  # TODO: error proof
         self.damage_immunities = new_immunities
 
-    def set_condition_immunities(self, new_immunities): # TODO: error proof
+    def set_condition_immunities(self, new_immunities):  # TODO: error proof
         self.condition_immunities = new_immunities
 
-    def set_resistances(self, new_resistances): # TODO: error proof
+    def set_resistances(self, new_resistances):  # TODO: error proof
         self.resistances = new_resistances
 
-    def set_weaknesses(self, new_weaknesses): # TODO: error proof
+    def set_weaknesses(self, new_weaknesses):  # TODO: error proof
         self.weaknesses = new_weaknesses
 
     def set_senses(self, new_senses):  # TODO: error proof
